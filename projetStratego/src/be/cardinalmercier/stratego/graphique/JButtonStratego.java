@@ -13,12 +13,21 @@ public class JButtonStratego extends JButton {
 	private ImageIcon imageDeFond;
 	private boolean surLeJeu = true;
 	private boolean cliquable;
+	private String message = "on ne peut pas cliquer ici";
 	
 	public boolean isCliquable() {
 		return cliquable;
 	}
 	public void setCliquable(boolean cliquable) {
 		this.cliquable = cliquable;
+	}
+	
+	
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	/**
 	 * @param ligne

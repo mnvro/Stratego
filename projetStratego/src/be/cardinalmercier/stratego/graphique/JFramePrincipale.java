@@ -43,8 +43,8 @@ public class JFramePrincipale extends JFrame {
 		couleur = (JOptionPane.showInputDialog("Votre couleur (R/B) ?")).toUpperCase().charAt(0);
 		//System.out.println("couleur = "+couleur);
 		plateauDeJeu = new JPanelStratego(Stratego.NBLIGNES,Stratego.NBCOLONNES,true,couleur);
-		boiteDeRangement = new JPanelStratego(4,Stratego.NBCOLONNES,false,couleur);
-		boiteDeRangementAdversaire = new JPanelStratego(4,Stratego.NBCOLONNES,false,Couleur.getAutreCouleur(couleur));
+		boiteDeRangement = new BoiteDeRangement(4,Stratego.NBCOLONNES,false,couleur,true);
+		boiteDeRangementAdversaire = new BoiteDeRangement(4,Stratego.NBCOLONNES,false,Couleur.getAutreCouleur(couleur),false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, plateauDeJeu.getLargeur()+boiteDeRangement.getLargeur() + Stratego.nbPixelsAjoutesEnLargeur, 
 				plateauDeJeu.getHauteur() + Stratego.nbPixelsAjoutesEnHauteur
