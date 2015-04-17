@@ -159,6 +159,7 @@ public class JPanelStratego extends JPanel implements ActionListener {
 		else{
 			JOptionPane.showMessageDialog(null, jbs.getMessage());
 		}
+		
 
 	}
 

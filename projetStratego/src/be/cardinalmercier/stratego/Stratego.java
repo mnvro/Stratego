@@ -47,6 +47,8 @@ public class Stratego {
 	public static final int nbPixelsAjoutesEnHauteur = 70;
 	public static final int nbPixelsAjoutesEnLargeur = 50;
 	
-	//public static final int MOMENT_DU
+	public static final int MOMENT_DU_JEU_PLACER_LES_PIECES = 0;
+	
+	
 	
 }
