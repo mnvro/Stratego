@@ -1,5 +1,6 @@
 package be.cardinalmercier.stratego.graphique;
 
+import be.cardinalmercier.stratego.Pion;
 import be.cardinalmercier.stratego.Stratego;
 
 public class GestionImage {
@@ -22,6 +23,20 @@ public class GestionImage {
 			sb.append("PionsBleus\\");
 		}
 		sb.append(type+"");
+		sb.append(".gif");
+		String s = new String(sb);
+		//System.out.println("Chemin vers l'image = "+s);
+		return s;
+	}
+	
+	public static String getImagePion(Pion p, char couleur){
+		StringBuffer sb = new StringBuffer(cheminVersDossierImage);
+		if (couleur == 'R'){
+			sb.append("PionsRouges\\");
+		} else{
+			sb.append("PionsBleus\\");
+		}
+		sb.append(p.getType()+"");
 		sb.append(".gif");
 		String s = new String(sb);
 		//System.out.println("Chemin vers l'image = "+s);

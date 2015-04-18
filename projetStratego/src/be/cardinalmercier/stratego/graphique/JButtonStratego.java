@@ -1,5 +1,9 @@
 package be.cardinalmercier.stratego.graphique;
 
+import java.awt.Component;
+import java.awt.Graphics;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -11,9 +15,25 @@ public class JButtonStratego extends JButton {
 	private Coordonnee coord;
 	private Pion pion;
 	private ImageIcon imageDeFond;
-	private boolean surLeJeu = true;
+	private int type;
 	private boolean cliquable;
 	private String message = "on ne peut pas cliquer ici";
+	JPanelStratego parent;
+	
+	public void videCase(){
+		pion = null;
+		this.setIcon(imageDeFond);
+		System.out.println("ici"); // TODO
+		if (parent.type == Stratego.BOITE_DE_RANGEMENT){
+			this.setEnabled(false);
+		}
+	}
+	
+	public void placeUnPion(Pion p){
+		pion = p;
+		this.setIcon(new ImageIcon(GestionImage.getImagePion(p, p.getCouleur())));
+	}
+	
 	
 	public boolean isCliquable() {
 		return cliquable;
@@ -36,25 +56,27 @@ public class JButtonStratego extends JButton {
 	 * @param couleur
 	 * @param parent 0 pour dire que le jButton fait partie du plateau de jeu, 1 s'il appartient à la boîte de rangement de l'adversaire et 2 si c'est ma boîte de rangement
 	 */
-	public JButtonStratego(int ligne, int colonne, boolean surLeJeu, char couleur) {
+	public JButtonStratego(int ligne, int colonne, int type, char couleur, JPanelStratego parent) {
 		super();
-		this.surLeJeu = surLeJeu;
+		this.type = type;
+		this.parent = parent;
 		//this.cliquable = cliquable;
 		
 		this.coord = new Coordonnee(ligne,colonne);
-		if (surLeJeu){
+		
+		if (type == Stratego.PLATEAU_DE_JEU){
 			imageDeFond = new ImageIcon(GestionImage.getImagePlateauDeJeu(ligne, colonne));
-			this.setIcon(imageDeFond);
+			
+			pion = null;
 		} else{
 			setPion(Pion.tabPionsJoueur[ligne*Stratego.NBCOLONNES+colonne]);
 			imageDeFond = new ImageIcon(GestionImage.getImageBoiteDeRangement(pion.getType(), ligne, colonne, couleur));
 			
 		}
-		pion = null;
+		this.setIcon(imageDeFond);
+		
 	}
-	public boolean estSurLeJeu(){
-		return surLeJeu;
-	}
+	
 	public Coordonnee getCoord() {
 		return coord;
 	}
@@ -74,5 +96,8 @@ public class JButtonStratego extends JButton {
 		this.imageDeFond = imageDeFond;
 	}
 	
+	public boolean estLibre(){
+		return pion == null;
+	}
 
 }

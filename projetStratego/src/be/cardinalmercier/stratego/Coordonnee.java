@@ -23,5 +23,9 @@ public class Coordonnee {
 	public void setColonne(int colonne) {
 		this.colonne = colonne;
 	}
+	@Override
+	public String toString() {
+		return "Coordonnee [ligne=" + ligne + ", colonne=" + colonne + "]";
+	}
 	
 }

@@ -1,4 +1,10 @@
 package be.cardinalmercier.stratego;
+
+import java.awt.EventQueue;
+
+import be.cardinalmercier.stratego.graphique.BoiteDeRangement;
+import be.cardinalmercier.stratego.graphique.JFramePrincipaleStratego;
+import be.cardinalmercier.stratego.graphique.JPanelStratego;
 /*
  * 
 Les pions de chaque joueur se compose dans l'ordre croissant des pièces suivantes:
@@ -17,6 +23,7 @@ Les pions de chaque joueur se compose dans l'ordre croissant des pièces suivante
 6 bombes
 
  */
+import be.cardinalmercier.stratego.graphique.PlateauDeJeu;
 
 /**
  * La classe Stratego contient toutes les valeurs concernant le jeu de Strateto
@@ -24,7 +31,7 @@ Les pions de chaque joueur se compose dans l'ordre croissant des pièces suivante
  * @author Marie-Noël Vroman
  *
  */
-public class Stratego {
+public class Stratego implements Runnable {
 	/**
 	 * le nombre de cases en hauteur sur le plateau de jeu
 	 */
@@ -49,6 +56,74 @@ public class Stratego {
 	
 	public static final int MOMENT_DU_JEU_PLACER_LES_PIECES = 0;
 	
+	public static final int BOITE_DE_RANGEMENT = 0;
+	public static final int BOITE_DE_RANGEMENT_ADVERSE = 1;
+	public static final int PLATEAU_DE_JEU = 2;
+	
+	public int momentDuJeu = MOMENT_DU_JEU_PLACER_LES_PIECES;
+	
+	
+	public JFramePrincipaleStratego framePrincipale;
+	private char couleur;
+	private BoiteDeRangement boiteDeRangement;
+	private BoiteDeRangement boiteDeRangementAdversaire;
+	private PlateauDeJeu plateauDeJeu;
+	
+	public char getCouleur() {
+		return couleur;
+	}
+	public void setCouleur(char couleur) {
+		this.couleur = couleur;
+	}
+	public BoiteDeRangement getBoiteDeRangement() {
+		return boiteDeRangement;
+	}
+	public void setBoiteDeRangement(BoiteDeRangement boiteDeRangement) {
+		this.boiteDeRangement = boiteDeRangement;
+	}
+	public BoiteDeRangement getBoiteDeRangementAdversaire() {
+		return boiteDeRangementAdversaire;
+	}
+	public void setBoiteDeRangementAdversaire(
+			BoiteDeRangement boiteDeRangementAdversaire) {
+		this.boiteDeRangementAdversaire = boiteDeRangementAdversaire;
+	}
+	public PlateauDeJeu getPlateauDeJeu() {
+		return plateauDeJeu;
+	}
+	public void setPlateauDeJeu(PlateauDeJeu plateauDeJeu) {
+		this.plateauDeJeu = plateauDeJeu;
+	}
+	
+	public JPanelStratego getJPanelEnFonctionDuType(int type){
+		switch (type){
+			case PLATEAU_DE_JEU : return plateauDeJeu; 
+			case BOITE_DE_RANGEMENT : return boiteDeRangement;
+			case BOITE_DE_RANGEMENT_ADVERSE : return boiteDeRangementAdversaire;
+		}
+		return null;
+	}
+	
+	public Stratego(){
+		EventQueue.invokeLater(this);
+	}
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		Stratego stratego = new Stratego();
+		
+	}
+	@Override
+	public void run() {
+		try {
+			framePrincipale = new JFramePrincipaleStratego(this);
+			framePrincipale.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 }
