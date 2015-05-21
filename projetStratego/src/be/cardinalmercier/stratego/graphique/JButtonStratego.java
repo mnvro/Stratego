@@ -1,11 +1,14 @@
 package be.cardinalmercier.stratego.graphique;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.MatteBorder;
 
 import be.cardinalmercier.stratego.Coordonnee;
 import be.cardinalmercier.stratego.Pion;
@@ -23,11 +26,20 @@ public class JButtonStratego extends JButton {
 	public void videCase(){
 		pion = null;
 		this.setIcon(imageDeFond);
-		System.out.println("ici"); // TODO
+		
 		if (parent.type == Stratego.BOITE_DE_RANGEMENT){
 			this.setEnabled(false);
 		}
 	}
+	
+	public void entoureDeBlanc(){
+		this.setBorder(BorderFactory.createLineBorder(Color.white));
+	}
+	
+	public void entoureDOrange(){
+		this.setBorder(new MatteBorder(5, 5, 5, 5, Color.ORANGE));
+	}
+	//stratego.getJPanelEnFonctionDuType(source.typeDuJPanel).getJb()[source.coord.getLigne()][source.coord.getColonne()]
 	
 	public void placeUnPion(Pion p){
 		pion = p;
